@@ -1,0 +1,194 @@
+// Locator Hand script 
+string $side = "L_";
+
+spaceLocator -p 0 0 0 -n ($side + "Wrist_LOC01");
+// creating the Index Locs
+spaceLocator -p 0 0 0 -n ($side + "Metacarpal_Ind_LOC01");
+xform -r -t 10 0 10;
+spaceLocator -p 0 0 0 -n ($side + "JTA_Ind_LOC01");
+xform -r -t 20 0 10;
+spaceLocator -p 0 0 0 -n ($side + "JTB_Ind_LOC01");
+xform -r -t 30 0 10;
+spaceLocator -p 0 0 0 -n ($side + "JTC_Ind_LOC01");
+xform -r -t 40 0 10;
+spaceLocator -p 0 0 0 -n ($side + "JTD_Ind_LOC01");
+xform -r -t 50 0 10;
+// creating index follow line 
+curve -d 1 -p 0 0 0 -p 10 0 10 -p 20 0 10 -p 30 0 10 -p 40 0 10 -p 50 0 10 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -n ($side + "Ind_Crv");
+rename "curveShape1" ($side + "Ind_CrvShape1");
+setAttr ($side + "Ind_Crv" + ".template") 1;
+
+
+// Creating the Joints
+joint -p 0 0 0 -n ($side + "JT_Wrist01");
+setAttr ($side + "JT_Wrist01" + ".template") 1;
+parent ($side + "JT_Wrist01")($side + "Wrist_LOC01");
+joint -p 10 0 10 -n ($side + "JT_Ind_Metacarpal01");
+setAttr ($side + "JT_Ind_Metacarpal01" + ".template") 1;
+parent ($side + "JT_Ind_Metacarpal01")($side + "Metacarpal_Ind_LOC01");
+joint -p 20 0 10 -n ($side + "JT_Ind_JTA01");
+setAttr ($side + "JT_Ind_JTA01" + ".template") 1;
+parent ($side + "JT_Ind_JTA01")($side + "JTA_Ind_LOC01");
+joint -p 30 0 10 -n ($side + "JT_Ind_JTB01");
+setAttr ($side + "JT_Ind_JTB01" + ".template") 1;
+parent ($side + "JT_Ind_JTB01")($side + "JTB_Ind_LOC01");
+joint -p 40 0 10 -n ($side + "JT_Ind_JTC01");
+setAttr ($side + "JT_Ind_JTC01" + ".template") 1;
+parent ($side + "JT_Ind_JTC01")($side + "JTC_Ind_LOC01");
+joint -p 50 0 10 -n ($side + "JT_Ind_JTD01");
+setAttr ($side + "JT_Ind_JTD01" + ".template") 1;
+parent ($side + "JT_Ind_JTD01")($side + "JTD_Ind_LOC01");
+
+select -r ($side + "JT_Wrist01")
+($side + "JT_Ind_Metacarpal01")
+($side + "JT_Ind_JTA01")
+($side + "JT_Ind_JTB01")
+($side + "JT_Ind_JTC01")
+($side + "JT_Ind_JTD01");
+select -add ($side + "Ind_Crv" + ".cv[0:5]");
+SmoothBindSkin;
+
+/*
+=====================================================================
+*/
+// creating the Mid Locs
+spaceLocator -p 0 0 0 -n ($side + "Metacarpal_Mid_LOC01");
+xform -r -t 10 0 5;
+spaceLocator -p 0 0 0 -n ($side + "JTA_Mid_LOC01");
+xform -r -t 20 0 5;
+spaceLocator -p 0 0 0 -n ($side + "JTB_Mid_LOC01");
+xform -r -t 30 0 5;
+spaceLocator -p 0 0 0 -n ($side + "JTC_Mid_LOC01");
+xform -r -t 40 0 5;
+spaceLocator -p 0 0 0 -n ($side + "JTD_Mid_LOC01");
+xform -r -t 50 0 5;
+
+// Mid follow line
+curve -d 1 -p 0 0 0 -p 10 0 5 -p 20 0 5 -p 30 0 5 -p 40 0 5 -p 50 0 5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -n ($side + "Mid_Crv");
+rename "curveShape1" ($side + "Mid_CrvShape1");
+setAttr ($side + "Mid_Crv" + ".template") 1;
+
+// Creating the  Mid Joints
+
+joint -p 10 0 5 -n ($side + "JT_Mid_Metacarpal01");
+setAttr ($side + "JT_Mid_Metacarpal01" + ".template") 1;
+parent ($side + "JT_Mid_Metacarpal01")($side + "Metacarpal_Mid_LOC01");
+joint -p 20 0 5 -n ($side + "JT_Mid_JTA01");
+setAttr ($side + "JT_Mid_JTA01" + ".template") 1;
+parent ($side + "JT_Mid_JTA01")($side + "JTA_Mid_LOC01");
+joint -p 30 0 5 -n ($side + "JT_Mid_JTB01");
+setAttr ($side + "JT_Mid_JTB01" + ".template") 1;
+parent ($side + "JT_Mid_JTB01")($side + "JTB_Mid_LOC01");
+joint -p 40 0 5 -n ($side + "JT_Mid_JTC01");
+setAttr ($side + "JT_Mid_JTC01" + ".template") 1;
+parent ($side + "JT_Mid_JTC01")($side + "JTC_Mid_LOC01");
+joint -p 50 0 5 -n ($side + "JT_Mid_JTD01");
+setAttr ($side + "JT_Mid_JTD01" + ".template") 1;
+parent ($side + "JT_Mid_JTD01")($side + "JTD_Mid_LOC01");
+
+select -r ($side + "JT_Wrist01")
+($side + "JT_Mid_Metacarpal01")
+($side + "JT_Mid_JTA01")
+($side + "JT_Mid_JTB01")
+($side + "JT_Mid_JTC01")
+($side + "JT_Mid_JTD01");
+select -add ($side + "Mid_Crv" + ".cv[0:5]");
+SmoothBindSkin;
+
+/*
+=====================================================================
+*/
+// creating the Mid Locs
+spaceLocator -p 0 0 0 -n ($side + "Metacarpal_Rng_LOC01");
+xform -r -t 10 0 0;
+spaceLocator -p 0 0 0 -n ($side + "JTA_Rng_LOC01");
+xform -r -t 20 0 0;
+spaceLocator -p 0 0 0 -n ($side + "JTB_Rng_LOC01");
+xform -r -t 30 0 0;
+spaceLocator -p 0 0 0 -n ($side + "JTC_Rng_LOC01");
+xform -r -t 40 0 0;
+spaceLocator -p 0 0 0 -n ($side + "JTD_Rng_LOC01");
+xform -r -t 50 0 0;
+
+// Rng follow line
+curve -d 1 -p 0 0 0 -p 10 0 0 -p 20 0 0 -p 30 0 0 -p 40 0 0 -p 50 0 0 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -n ($side + "Rng_Crv");
+rename "curveShape1" ($side + "Rng_CrvShape1");
+setAttr ($side + "Rng_Crv" + ".template") 1;
+
+// Creating the  Rng Joints
+
+joint -p 10 0 0 -n ($side + "JT_Rng_Metacarpal01");
+setAttr ($side + "JT_Rng_Metacarpal01" + ".template") 1;
+parent ($side + "JT_Rng_Metacarpal01")($side + "Metacarpal_Rng_LOC01");
+joint -p 20 0 0 -n ($side + "JT_Rng_JTA01");
+setAttr ($side + "JT_Rng_JTA01" + ".template") 1;
+parent ($side + "JT_Rng_JTA01")($side + "JTA_Rng_LOC01");
+joint -p 30 0 0 -n ($side + "JT_Rng_JTB01");
+setAttr ($side + "JT_Rng_JTB01" + ".template") 1;
+parent ($side + "JT_Rng_JTB01")($side + "JTB_Rng_LOC01");
+joint -p 40 0 0 -n ($side + "JT_Rng_JTC01");
+setAttr ($side + "JT_Rng_JTC01" + ".template") 1;
+parent ($side + "JT_Rng_JTC01")($side + "JTC_Rng_LOC01");
+joint -p 50 0 0 -n ($side + "JT_Rng_JTD01");
+setAttr ($side + "JT_Rng_JTD01" + ".template") 1;
+parent ($side + "JT_Rng_JTD01")($side + "JTD_Rng_LOC01");
+
+select -r ($side + "JT_Wrist01")
+($side + "JT_Rng_Metacarpal01")
+($side + "JT_Rng_JTA01")
+($side + "JT_Rng_JTB01")
+($side + "JT_Rng_JTC01")
+($side + "JT_Rng_JTD01");
+select -add ($side + "Rng_Crv" + ".cv[0:5]");
+SmoothBindSkin;
+
+/*
+=====================================================================
+*/
+// creating the Pnky Locs
+spaceLocator -p 0 0 0 -n ($side + "Metacarpal_Pnky_LOC01");
+xform -r -t 10 0 -5;
+spaceLocator -p 0 0 0 -n ($side + "JTA_Pnky_LOC01");
+xform -r -t 20 0 -5;
+spaceLocator -p 0 0 0 -n ($side + "JTB_Pnky_LOC01");
+xform -r -t 30 0 -5;
+spaceLocator -p 0 0 0 -n ($side + "JTC_Pnky_LOC01");
+xform -r -t 40 0 -5;
+spaceLocator -p 0 0 0 -n ($side + "JTD_Pnky_LOC01");
+xform -r -t 50 0 -5;
+
+// Pnky follow line
+curve -d 1 -p 0 0 0 -p 10 0 -5 -p 20 0 -5 -p 30 0 -5 -p 40 0 -5 -p 50 0 -5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -n($side + "Pnky_Crv") ;
+rename "curveShape1" ($side + "Pnky_CrvShape1");
+setAttr ($side + "Pnky_Crv" + ".template") 1;
+
+// Creating the  Pnky Joints
+
+joint -p 10 0 -5 -n ($side + "JT_Pnky_Metacarpal01");
+setAttr ($side + "JT_Pnky_Metacarpal01" + ".template") 1;
+parent ($side + "JT_Pnky_Metacarpal01")($side + "Metacarpal_Pnky_LOC01");
+joint -p 20 0 -5 -n ($side + "JT_Pnky_JTA01");
+setAttr ($side + "JT_Pnky_JTA01" + ".template") 1;
+parent ($side + "JT_Pnky_JTA01")($side + "JTA_Pnky_LOC01");
+joint -p 30 0 -5 -n ($side + "JT_Pnky_JTB01");
+setAttr ($side + "JT_Pnky_JTB01" + ".template") 1;
+parent ($side + "JT_Pnky_JTB01")($side + "JTB_Pnky_LOC01");
+joint -p 40 0 -5 -n ($side + "JT_Pnky_JTC01");
+setAttr ($side + "JT_Pnky_JTC01" + ".template") 1;
+parent ($side + "JT_Pnky_JTC01")($side + "JTC_Pnky_LOC01");
+joint -p 50 0 -5 -n ($side + "JT_Pnky_JTD01");
+setAttr ($side + "JT_Pnky_JTD01" + ".template") 1;
+parent ($side + "JT_Pnky_JTD01")($side + "JTD_Pnky_LOC01");
+
+select -r ($side + "JT_Wrist01")
+($side + "JT_Pnky_Metacarpal01")
+($side + "JT_Pnky_JTA01")
+($side + "JT_Pnky_JTB01")
+($side + "JT_Pnky_JTC01")
+($side + "JT_Pnky_JTD01");
+select -add ($side + "Pnky_Crv" + ".cv[0:5]");
+SmoothBindSkin;
+
+
+
+
